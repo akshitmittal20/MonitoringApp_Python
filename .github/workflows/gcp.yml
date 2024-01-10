@@ -26,7 +26,7 @@ jobs:
       with:
         workload_identity_provider: https://iam.googleapis.com/projects/766703756158/locations/global/workloadIdentityPools/123a/providers/github
         service_account: ${{ secrets.SERVICE_ACCOUNT_KEY }} #parse the value of repository secret called SERVICE_ACCOUNT_KEY that we have created earlier
-        project_id: ${{ env.PROJECT_ID }} #parse the value of env called PROJECT_ID.
+        project_id: ${{ env.PROJECT_ID }} #parse the value of env called PROJECT_ID..
     
     - name: build the Docker Image
       run: docker build -t $IMAGE_NAME:latest .
