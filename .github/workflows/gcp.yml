@@ -25,7 +25,7 @@ jobs:
         export_default_credentials: true
     
     - name: build the Docker Image
-      uses: docker build -t $IMAGE_NAME:latest .
+      run: docker build -t $IMAGE_NAME:latest .
 
     - name: configure Docker Client
       run: |-
