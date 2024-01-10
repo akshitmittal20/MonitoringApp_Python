@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-
-
 jobs:
   # example with Workload Identity Federation
   build-and-push-to-gcr:
@@ -25,7 +23,7 @@ jobs:
       uses: google-github-actions/auth@v2 #checkouts GCR repo, so this workflow can access it
       with:
         workload_identity_provider: https://iam.googleapis.com/projects/766703756158/locations/global/workloadIdentityPools/123a/providers/github
-        service_account: ${{ secrets.GITHUB_TOKEN }} #parse the value of repository secret called SERVICE_ACCOUNT_KEY that we have created earlier
+        service_account: ${{ secrets.SERVICE_ACCOUNT_KEY }} #parse the value of repository secret called SERVICE_ACCOUNT_KEY that we have created earlier
         project_id: ${{ env.PROJECT_ID }} #parse the value of env called PROJECT_ID..
     
     - name: build the Docker Image
