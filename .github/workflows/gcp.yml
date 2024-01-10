@@ -22,11 +22,11 @@ jobs:
       uses: actions/checkout@v2
     
     - name: Login to GCR
-      uses: google-github-actions/setup-gcloud@v0.3.0 #checkouts GCR repo, so this workflow can access it
+      uses: google-github-actions/auth@v2 #checkouts GCR repo, so this workflow can access it
       with:
-        service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }} #parse the value of repository secret called SERVICE_ACCOUNT_KEY that we have created earlier
+        workload_identity_provider: principal://iam.googleapis.com/projects/766703756158/locations/global/workloadIdentityPools/123a/subject/SUBJECT_ATTRIBUTE_VALUE
+        service_account: ${{ secrets.SERVICE_ACCOUNT_KEY }} #parse the value of repository secret called SERVICE_ACCOUNT_KEY that we have created earlier
         project_id: ${{ env.PROJECT_ID }} #parse the value of env called PROJECT_ID.
-        export_default_credentials: trueß
     
     - name: build the Docker Image
       run: docker build -t $IMAGE_NAME:latest .
