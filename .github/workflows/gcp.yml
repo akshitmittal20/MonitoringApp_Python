@@ -32,7 +32,7 @@ jobs:
     - name: Automatic tagging of release
       id: increment-git-tag
       run: |
-        bash ./Scritps/git_update.sh -v major
+        bash ./Scritps/git_update.sh -v patch
 
     - name: configure Docker Client
       run: |-
