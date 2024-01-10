@@ -2,8 +2,7 @@
 name: Build and Push Python monitoring application to Google Cloud Platform
 on: 
   push:
-    branches:
-      - main
+    branches: [ main ]
 jobs:
   # example with Workload Identity Federation
   build-and-push-to-gcr:
