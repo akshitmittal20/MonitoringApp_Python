@@ -12,7 +12,7 @@ jobs:
       contents: read
       packages: write
     env:        #variables
-        IMAGE_NAME: PythonMonitoringApp
+        IMAGE_NAME: python_monitor_app
         PROJECT_ID: focal-future-307712
         
     steps:
