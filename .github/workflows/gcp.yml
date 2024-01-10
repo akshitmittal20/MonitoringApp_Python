@@ -1,0 +1,46 @@
+---
+name: Build and Push Python monitoring application to Google Cloud Platform
+on: 
+  push:
+    branches:
+      - main
+
+
+jobs:
+  # example with Workload Identity Federation
+  build-and-push-to-gcr:
+    name: Build & push to GCP
+    runs-on: ubuntu-latest
+    env:        #variables
+        IMAGE_NAME: PythonMonitoringApp
+        PROJECT_ID: focal-future-307712
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - uses: google-github-actions/setup-gcloud@master
+      with:
+        service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+        project_id: ${{ env.PROJECT_ID}}
+        export_default_credentials: true
+    
+    - name: build the Docker Image
+      uses: docker build -t $IMAGE_NAME:latest .
+
+    - name: configure Docker Client
+      run: |-
+        gcloud auth configure-docker --quiet
+
+    - name: Push Docker Image to Container Registry (GCR)
+      env:
+        GIT_TAG:  v0.1.0
+      run: |-
+        docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+        docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+        docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+        docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG 
+
+
+
+
+#https://medium.com/@ardhanyoga/automating-docker-image-push-to-github-packages-github-container-registry-ghcr-and-google-3ffea20f595b      
