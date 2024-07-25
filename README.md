@@ -1,4 +1,3 @@
-```markdown
 # MonitoringApp_Python
 
 This repository contains the source code for the MonitoringApp_Python, a system monitoring application built with Python, Flask, and Docker. This application provides a web interface to monitor CPU and memory usage.
