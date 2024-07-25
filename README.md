@@ -141,7 +141,3 @@ This project is licensed under the MIT License. See the LICENSE file for details
 <img width="1228" alt="image" src="https://github.com/akshitmittal20/MonitoringApp_Python/assets/63283989/fa263c19-8266-43f7-8cdd-8cd98e4fe317">
 
 ---
-```
-
-
-
